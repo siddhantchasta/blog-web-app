@@ -1,0 +1,29 @@
+
+body {
+    background: #334d50;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #cbcaa5, #334d50);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #cbcaa5, #334d50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    font-family: 'Arial', sans-serif; /* A common, readable font */
+    margin: 0; /* Remove default browser margin */
+    padding: 2rem; /* Add some padding around the content */
+}
+
+.site-header {
+    /* background-color: #007bff; Bootstrap primary blue, or choose another color e.g., #343a40 (dark grey) */
+    padding: 1.5rem 1rem; /* Add some padding */
+    color: #334d50; /* Text color for the header */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* A subtle shadow for depth */
+    margin-bottom: 2rem; /* Space below the header */
+  }
+.site-header h1 {
+    margin-bottom: 0; /* Remove default margin from h1 for better alignment */
+    font-weight: 300; /* A slightly lighter font weight for the title */
+}
+.site-header .btn-outline-light:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #007bff; /* Text color on hover to match header background */
+}
+
+
+
+

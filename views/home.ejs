@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NarrateX - Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class ="body">
+    <%- include("partials/header.ejs") %>
+    <!-- Section for Static Blog Posts -->
+    <div class="container-fluid mb-5">
+        <h2 class="text-center mb-3">Featured Articles</h2>
+        <% if (typeof staticBlogs !== 'undefined' && staticBlogs.length > 0) { %>
+            <% staticBlogs.forEach(function(staticPost) { %>
+                <div class="p-3 border bg-light mb-4">
+                    <h2><%= staticPost.title %></h2>
+                    <!-- <% if (staticPost.image) { %>
+                        <img src="<%= staticPost.image %>" alt="<%= staticPost.title %>" class="img-fluid my-3">
+                    <% } %> -->
+                    <p>
+                        <%- staticPost.snippet %>
+                        <% if (staticPost.id) { %>
+                            <a href="/static-post/<%= staticPost.id %>" class="btn btn-link ps-0">Read more</a>
+                        <% } %>
+                    </p>
+                    <% if (staticPost.createdAt) { %>
+                        <small class="text-muted d-block mb-2">Originally Published: <%= new Date(staticPost.createdAt).toLocaleDateString() %></small>
+                    <% } %>
+                </div>
+            <% }); %>
+        <% } else { %>
+            <p class="text-center">No featured articles available at the moment.</p>
+        <% } %>
+    </div>
+
+    <!-- Section for Dynamically Created User Blog Posts -->
+    <div class="container-fluid">
+        <h2 class="text-center mb-3">Latest Community Posts</h2>
+        <% if (typeof posts !== 'undefined' && posts.length > 0) { %>
+            <% posts.forEach(function(post) { %>
+                <div class="p-3 border bg-light mb-4">
+                    <h2><%= post.title %></h2>
+                    <!-- <% if (post.image) { %>
+                        <img src="<%= post.image %>" alt="<%= post.title %>" class="img-fluid my-3">
+                    <% } %> -->
+                    <p>
+                        <%= post.description %>
+                        <% if (post.id) { %>
+                            <a href="/post/<%= post.id %>" class="btn btn-link ps-0">Read more</a>
+                        <% } %>
+                    </p>
+    
+                    <% if (post.createdAt) { %>
+                        <small class="text-muted d-block mb-2">Posted on: <%= new Date(post.createdAt).toLocaleDateString() %></small>
+                    <% } %>
+    
+                    <div class="post-actions">
+                        <a href="/edit/<%= post.id %>" class="btn btn-sm btn-warning me-2">Edit</a>
+                        <form method="POST" action="/delete/<%= post.id %>" style="display:inline;">
+                          <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            <% }); %>
+        <% } else { %>
+             <p class="text-center">No community posts yet. <a href="/create" class="link-light">Be the first!</a></p>
+        <% } %>
+    </div>
+
+    <footer class="footer mt-5 py-3 text-center">
+        <div class="container">
+            <span class="text-muted">&copy; <%= new Date().getFullYear() %> NarrateX. All rights reserved.</span>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
